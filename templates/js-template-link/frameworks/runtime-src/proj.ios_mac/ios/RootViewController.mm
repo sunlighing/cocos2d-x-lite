@@ -29,6 +29,7 @@
 
 #include "platform/CCApplication.h"
 #include "platform/ios/CCEAGLView-ios.h"
+#import "AppController.h"
 
 @implementation RootViewController
 
@@ -51,6 +52,34 @@ return self;
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // ******
+    //增加监听，当键盘出现或改变时收出消息
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    
+    
+}
++(NSString*)getkeybordHeight
+
+{
+    AppController * appDelegate = (AppController*)[UIApplication sharedApplication].delegate;
+    return [NSString stringWithFormat:@"%f",  appDelegate.keyboardHeight];
+}
+
+//当键盘出现或改变时调用
+- (void)keyboardWillShow:(NSNotification *)aNotification
+{
+    //获取键盘的高度
+    NSDictionary *userInfo = [aNotification userInfo];
+    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect = [aValue CGRectValue];
+    int height = keyboardRect.size.height;
+    AppController * appDelegate = (AppController*)[UIApplication sharedApplication].delegate;
+    appDelegate.keyboardHeight = height;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -93,6 +122,9 @@ return self;
 
     // Release any cached data, images, etc that aren't in use.
 }
-
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+}
 
 @end

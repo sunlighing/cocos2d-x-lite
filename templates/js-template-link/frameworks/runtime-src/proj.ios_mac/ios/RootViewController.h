@@ -31,4 +31,5 @@
 
 }
 - (BOOL)prefersStatusBarHidden;
++(NSString*)getkeybordHeight;
 @end

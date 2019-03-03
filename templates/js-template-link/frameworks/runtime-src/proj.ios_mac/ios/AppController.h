@@ -33,5 +33,8 @@
 
 @property(nonatomic, readonly) RootViewController* viewController;
 
+@property(nonatomic, assign) CGFloat keyboardHeight;
+
+
 @end
 
