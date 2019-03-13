@@ -58,6 +58,7 @@ public class Cocos2dxEditBox {
 
     // a color of dark green, was used for confirm button background
     private static final int DARK_GREEN = Color.parseColor("#1fa014");
+    private static final int DARK_RED = Color.parseColor("##cf305e");
     private static final int DARK_GREEN_PRESS = Color.parseColor("#008e26");
 
     private static Cocos2dxEditBox sThis = null;
@@ -79,13 +80,14 @@ public class Cocos2dxEditBox {
         private boolean mIsMultiLine = false;
         private TextWatcher mTextWatcher = null;
         private Paint mPaint;
-        private int mLineColor = DARK_GREEN;
+        private int mLineColor = DARK_RED;
         private float mLineWidth = 2f;
         private boolean keyboardVisible = false;
         private int mScreenHeight;
-
+        
         public  Cocos2dxEditText(Cocos2dxActivity context){
             super(context);
+            System.out.println("此处已大日志"+mLineColor);
             //remove focus border
             this.setBackground(null);
             mScreenHeight = ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).

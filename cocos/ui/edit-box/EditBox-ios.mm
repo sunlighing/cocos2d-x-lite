@@ -225,7 +225,7 @@ namespace
             createButton(&g_textFieldConfirmButton, &g_textFieldConfirmButtonHandler, rect, showInfo.confirmType);
             g_textField.rightView = g_textFieldConfirmButton;
             g_textField.rightViewMode = UITextFieldViewModeAlways;
-             [g_textField setHidden:true];  //2019.3.3 dzclong 隐藏原生输入框
+            [g_textField setHidden:true];  //2019.3.3 dzclong 隐藏原生输入框
             [g_textField addTarget:g_textFieldDelegate action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         }
 
